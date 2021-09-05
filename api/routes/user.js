@@ -26,16 +26,16 @@ router.get("/feature", checkAuth, (req, res, next) => {
         .then(client => {
             const connect = client.db('test');
             const collection = connect
-                .collection("users");
+                .collection("users_project_management_db");
             return new Promise(() => {
-                const response = [];
-                collection.find({}).toArray()
-                    .then(allUsers => {
-                        response.push(allUsers);
-                        res.status(200).json({
-                            users: allUsers.filter(users => users.name !== req.name),
-                        });
-                    })
+                var myobj = {
+                    email: req.query.email,
+                };
+                collection.findOne(myobj, (err, collectionRes) => {
+                    res.status(200).json({
+                        canAccess: collectionRes.enable,
+                    });
+                });
             })
 
         }).catch(collectionErr => {
@@ -46,9 +46,13 @@ router.get("/feature", checkAuth, (req, res, next) => {
 router.post("/feature", checkAuth, (req, res, next) => {
     Connection.open()
         .then(client => {
-            const collection = client.db("test").collection("users");
-            var myobj = { name: req.params.name };
-            return collection.findOne(myobj, (err, collectionRes) => {
+            const collection = client.db("test").collection("users_project_management_db");
+            var myobj = {
+                featureName: req.headers.featureName,
+                email: req.headers.email,
+                enable: req.headers.enable,
+            };
+            return collection.insertOne(myobj, (err, collectionRes) => {
                 if (err) {
                     return err;
                 }

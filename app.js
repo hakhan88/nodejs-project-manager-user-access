@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require('cors');
 
-const scheduledCalls = require("./api/routes/scheduledCalls");
 const userRoutes = require('./api/routes/user');
 
 
@@ -17,7 +16,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes which should handle requests
-app.use("/scheduledCalls", scheduledCalls);
 app.use("/user", userRoutes);
 
 app.use((req, res, next) => {

@@ -15,8 +15,6 @@
     "author": "Maximilian Schwarzmüller",
     "license": "ISC",
     "dependencies": {
-        "aws-sdk": "^2.960.0",
-        "bcrypt": "^5.0.1",
         "body-parser": "^1.18.2",
         "cors": "^2.8.5",
         "express": "^4.16.2",
@@ -24,7 +22,6 @@
         "mongodb": "^4.0.1",
         "mongoose": "~4.13.21",
         "morgan": "^1.9.0",
-        "multer": "^1.4.2",
         "uuid": "^8.3.2"
     },
     "devDependencies": {

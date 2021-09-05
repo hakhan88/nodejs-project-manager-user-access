@@ -4,6 +4,23 @@ const jwt = require("jsonwebtoken");
 const { Connection } = require('../../Connection');
 const checkAuth = require('../middleware/check-auth');
 
+router.post("/login", (req, res, next) => {
+    const token = jwt.sign(
+        {
+            userId: Math.floor(Math.random() * 10),
+            name: 'Admin'
+        },
+        process.env.JWT_KEY,
+        {
+            expiresIn: "8h"
+        }
+    );
+    return res.status(200).json({
+        message: "Auth successful",
+        token: token
+    });
+});
+
 router.get("/feature", checkAuth, (req, res, next) => {
     Connection.open()
         .then(client => {

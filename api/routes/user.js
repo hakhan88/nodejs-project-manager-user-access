@@ -46,19 +46,39 @@ router.get("/feature", checkAuth, (req, res, next) => {
 router.post("/feature", checkAuth, (req, res, next) => {
     Connection.open()
         .then(client => {
-            const collection = client.db("test").collection("users_project_management_db");
+            const collection = client.db("test")
+                .collection("users_project_management_db");
+            var queryobj = {
+                featureName: req.headers.featurename,
+                email: req.headers.email,
+            };
             var myobj = {
-                featureName: req.headers.featureName,
+                featureName: req.headers.featurename,
                 email: req.headers.email,
                 enable: req.headers.enable,
             };
-            return collection.insertOne(myobj, (err, collectionRes) => {
-                if (err) {
-                    return err;
+            // check if user already exists
+            return collection.findOne(queryobj, (err, collectionRes) => {
+                if (collectionRes) {
+                    return collection.updateOne(queryobj, { $set: myobj }, (err, updateOneRes) => {
+                        if (err) {
+                            return err;
+                        }
+                        return res.status(200).json({
+                            userDetails: updateOneRes,
+                        });
+                    })
+                } else {
+                    // insert new record if user doesnt already exist
+                    return collection.insertOne(myobj, (err, collectionRes) => {
+                        if (err) {
+                            return err;
+                        }
+                        res.status(200).json({
+                            userDetails: collectionRes,
+                        });
+                    });
                 }
-                res.status(200).json({
-                    userDetails: collectionRes,
-                });
             });
         }).catch(collectionErr => {
             console.log('catch error', collectionErr);

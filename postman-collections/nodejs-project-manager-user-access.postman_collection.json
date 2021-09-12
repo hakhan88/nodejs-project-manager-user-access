@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "c28c7b51-f8e2-43f3-99b5-4ca3683d2374",
+		"name": "nodejs-project-manager-user-access",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login Authentication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get features",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJBZG1pbiIsImlhdCI6MTYzMTQ1NzEyMiwiZXhwIjoxNjMxNDg1OTIyfQ.IixFpbt1LgFP3hRazl4vShnmOkVBk-TPv8pBtU3W7Bs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/user/feature?email=well@gmail.com&featureName=potter",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"feature"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "well@gmail.com"
+						},
+						{
+							"key": "featureName",
+							"value": "potter"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Features",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJBZG1pbiIsImlhdCI6MTYzMTQ1NzEyMiwiZXhwIjoxNjMxNDg1OTIyfQ.IixFpbt1LgFP3hRazl4vShnmOkVBk-TPv8pBtU3W7Bs",
+						"type": "text"
+					},
+					{
+						"key": "featureName",
+						"value": "newThing2",
+						"type": "text"
+					},
+					{
+						"key": "email",
+						"value": "well@gmail.com",
+						"type": "text"
+					},
+					{
+						"key": "enable",
+						"value": "false",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/user/feature",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"feature"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsIm5hbWUiOiJBZG1pbiIsImlhdCI6MTYzMDgxNzQ4OSwiZXhwIjoxNjMwODQ2Mjg5fQ.KXS2L6yOzoGnwb43lnwYHusHVXihOjGIPCZQd-fDhHI",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "potter",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "welhello@gmail.com",
+							"disabled": true
+						},
+						{
+							"key": "enable",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
